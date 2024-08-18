@@ -1,7 +1,5 @@
 package io.javabrains.reactiveworkshop;
 
-import java.util.Optional;
-
 public class
 
 Exercise1 {
@@ -32,25 +30,32 @@ Exercise1 {
         //  Print the first number in intNumbersStream that's greater than 5.
         //  If nothing is found, print -1
         System.out.println("Print the first number in intNumbersStream that's greater than 5. If nothing is found, print -1");
-        Optional<Integer> first = StreamSources.intNumbersStream().filter(integer -> integer > 5).findFirst();
-        first.ifPresentOrElse(v -> {
-            System.out.println(v);
-        }, () ->
-        {
-            System.out.println(-1);
-        });
+        StreamSources.intNumbersStream().filter(integer -> integer > 5).findFirst().ifPresentOrElse(v -> System.out.println(v), () -> System.out.println(-1));
+        // or
+        System.out.println("or...");
+        Integer i = StreamSources.intNumbersStream().filter(integer -> integer > 5).findFirst().orElse(-1);
+        System.out.println(i);
 
         // Print first names of all users in userStream
         System.out.println("Print first names of all users in userStream");
         StreamSources.userStream().forEach(user -> {
             System.out.println(user.getFirstName());
         });
+        // or
+        System.out.println("or...");
+        StreamSources.userStream().map(user -> user.getFirstName()).forEach(System.out::println);
 
         // Print first names in userStream for users that have IDs from number stream
         System.out.println("Print first names in userStream for users that have IDs from number stream");
-        StreamSources.userStream().filter(user ->
-                StreamSources.intNumbersStream().toList().contains(user.getId())
-        ).toList().forEach(user -> System.out.println(user.getId() + " => " + user.getFirstName()));
+        StreamSources.userStream()
+                .filter(user -> StreamSources.intNumbersStream().anyMatch(id -> user.getId() == id))
+                .forEach(user -> System.out.println(user.getId() + " => " + user.getFirstName()));
+        // or
+        System.out.println("or...");
+        StreamSources.intNumbersStream()
+                .flatMap(id -> StreamSources.userStream().filter(user -> user.getId() == id))
+                .map(user -> user.getFirstName())
+                .forEach(System.out::println);
     }
 
 }
