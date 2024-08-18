@@ -31,7 +31,6 @@ Exercise1 {
 
         //  Print the first number in intNumbersStream that's greater than 5.
         //  If nothing is found, print -1
-        // TODO: Write code here
         System.out.println("Print the first number in intNumbersStream that's greater than 5. If nothing is found, print -1");
         Optional<Integer> first = StreamSources.intNumbersStream().filter(integer -> integer > 5).findFirst();
         first.ifPresentOrElse(v -> {
