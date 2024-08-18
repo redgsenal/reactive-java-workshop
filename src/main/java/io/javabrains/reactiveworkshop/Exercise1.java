@@ -1,6 +1,5 @@
 package io.javabrains.reactiveworkshop;
 
-import java.util.Arrays;
 import java.util.Optional;
 
 public class
@@ -25,7 +24,10 @@ Exercise1 {
 
         // Print the second and third numbers in intNumbersStream that's greater than 5
         System.out.println("Print the second and third numbers in intNumbersStream that's greater than 5");
-        Arrays.stream(StreamSources.intNumbersStream().toArray(), 1, 3).forEach(System.out::println);
+        // Arrays.stream(StreamSources.intNumbersStream().toArray(), 1, 3).forEach(System.out::println);
+        StreamSources.intNumbersStream().filter(i -> i > 5).skip(1).limit(2).forEach(v -> {
+            System.out.println(v);
+        });
 
         //  Print the first number in intNumbersStream that's greater than 5.
         //  If nothing is found, print -1
