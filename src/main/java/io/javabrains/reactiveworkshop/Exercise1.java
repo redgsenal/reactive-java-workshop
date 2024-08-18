@@ -21,7 +21,7 @@ Exercise1 {
 
         // Print numbers from intNumbersStream that are less than 5
         System.out.println("Print numbers from intNumbersStream that are less than 5");
-        StreamSources.intNumbersStream().filter(i -> i <= 5).forEach(System.out::println);
+        StreamSources.intNumbersStream().filter(i -> i < 5).forEach(System.out::println);
 
         // Print the second and third numbers in intNumbersStream that's greater than 5
         System.out.println("Print the second and third numbers in intNumbersStream that's greater than 5");
