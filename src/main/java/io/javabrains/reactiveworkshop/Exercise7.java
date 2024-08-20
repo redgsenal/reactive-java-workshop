@@ -41,21 +41,36 @@ public class Exercise7 {
                 .flatMap(value -> Mono.just(value))
                 .switchIfEmpty(Mono.just(-1))
                 .subscribe(System.out::println);*/
-
-        ReactiveSources.intNumbersFlux()
+        /*ReactiveSources.intNumbersFlux()
                 .log()
                 .filter(value -> value > 20)
                 .defaultIfEmpty(-1)
-                .subscribe(System.out::println);
+                .subscribe(System.out::println);*/
 
         // Switch ints from intNumbersFlux to the right user from userFlux
-        // TODO: Write code here
+        /*ReactiveSources.intNumbersFlux()
+                .log()
+                .flatMap(value -> ReactiveSources.userFlux()
+                        .filter(user -> user.getId() == value)
+                ).subscribe(System.out::println);*/
 
         // Print only distinct numbers from intNumbersFluxWithRepeat
-        // TODO: Write code here
+        /*ReactiveSources.intNumbersFluxWithRepeat()
+                .log()
+                .distinct()
+                .subscribe(System.out::println);*/
+
+        /*ReactiveSources.userFlux()
+                .log()
+                .distinct()
+                .subscribe(System.out::println);*/
 
         // Print from intNumbersFluxWithRepeat excluding immediately repeating numbers
-        // TODO: Write code here
+        // meaning, dont print in succession the same value before
+        ReactiveSources.intNumbersFluxWithRepeat()
+                .distinctUntilChanged()
+                .log()
+                .subscribe();
 
         System.out.println("Press a key to end");
         System.in.read();
