@@ -10,13 +10,23 @@ public class Exercise9 {
         // Use ReactiveSources.intNumbersFlux()
 
         // Print size of intNumbersFlux after the last item returns
-        // TODO: Write code here
+        // non-blocking way to get the size of the Flux
+       /* ReactiveSources.intNumbersFlux()
+                .log()
+                .count().subscribe(System.out::println);*/
 
         // Collect all items of intNumbersFlux into a single list and print it
-        // TODO: Write code here
+        /*ReactiveSources.intNumbersFlux()
+                .log()
+                .collectList()
+                .subscribe(System.out::println);*/
 
         // Transform to a sequence of sums of adjacent two numbers
-        // TODO: Write code here
+        ReactiveSources.intNumbersFlux()
+                .buffer(2)
+                .log()
+                .map(lists -> lists.get(0) + lists.get(1))
+                .subscribe(System.out::println);
 
         System.out.println("Press a key to end");
         System.in.read();
