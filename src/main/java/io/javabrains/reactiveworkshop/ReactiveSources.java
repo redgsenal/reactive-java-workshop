@@ -70,4 +70,9 @@ public class ReactiveSources {
                 .just(1, 2, 1, 1, 3, 2, 4, 5, 1)
                 .delayElements(Duration.ofSeconds(1));
     }
+
+    public static Mono<String> stringOneHelloMono() {
+        return Mono.just("Hello")
+                .delayElement(Duration.ofSeconds(1));
+    }
 }

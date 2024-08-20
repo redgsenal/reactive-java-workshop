@@ -25,13 +25,13 @@ public class Exercise5b {
             @Override
             protected void hookOnSubscribe(Subscription subscription) {
                 System.out.println("subscription triggered...");
-                request(1);
+                request(3);
             }
 
             @Override
             protected void hookOnNext(User value) {
                 System.out.println("hook on next: " + value.toString());
-                request(1);
+                request(2);
             }
 
         });
