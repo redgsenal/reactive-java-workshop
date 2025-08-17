@@ -1,5 +1,7 @@
 package io.javabrains.reactiveworkshop;
 
+import reactor.core.publisher.Mono;
+
 import java.io.IOException;
 
 public class Exercise7 {
@@ -36,11 +38,11 @@ public class Exercise7 {
                 .subscribe(System.out::println);*/
 
         // Print each value from intNumbersFlux that's greater than 20. Print -1 if no elements are found
-        /*ReactiveSources.intNumbersFlux()
-                .filter(value -> value > 20)
+        ReactiveSources.intNumbersFlux()
+                .filter(value -> value > 0)
                 .flatMap(value -> Mono.just(value))
                 .switchIfEmpty(Mono.just(-1))
-                .subscribe(System.out::println);*/
+                .subscribe(System.out::println);
         /*ReactiveSources.intNumbersFlux()
                 .log()
                 .filter(value -> value > 20)
@@ -67,10 +69,10 @@ public class Exercise7 {
 
         // Print from intNumbersFluxWithRepeat excluding immediately repeating numbers
         // meaning, dont print in succession the same value before
-        ReactiveSources.intNumbersFluxWithRepeat()
+        /*ReactiveSources.intNumbersFluxWithRepeat()
                 .distinctUntilChanged()
                 .log()
-                .subscribe();
+                .subscribe();*/
 
         System.out.println("Press a key to end");
         System.in.read();
